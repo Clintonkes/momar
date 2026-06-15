@@ -132,3 +132,6 @@ scripts/
 
 proton-recovery-phrase (4).pdf
 proton-recovery-phrase (4).pdf:Zone.Identifier
+
+node_modules/
+create_admin.py

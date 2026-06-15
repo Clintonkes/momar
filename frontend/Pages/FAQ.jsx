@@ -5,9 +5,9 @@ import Footer from '../components/Footer'
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(null)
-  
+
   const faqs = [
-    { question: "What areas do you service?", answer: "We service Inglewood, CA and surrounding areas within a 30-mile radius. Contact us to confirm service availability in your area." },
+    { question: "What areas do you service?", answer: "We service North Richland Hills, TX and surrounding areas within a 30-mile radius. Contact us to confirm service availability in your area." },
     { question: "How much does cleaning cost?", answer: "Our pricing varies based on service type, property size, and frequency. We offer competitive rates starting at $89 for basic residential cleaning. Get a free quote for accurate pricing." },
     { question: "Do you bring your own cleaning supplies?", answer: "Yes, we bring all professional-grade cleaning supplies and equipment. We use eco-friendly products that are safe for your family and pets." },
     { question: "Are you insured and bonded?", answer: "Absolutely. We are fully licensed, insured, and bonded for your peace of mind. All our cleaners undergo background checks." },
@@ -18,36 +18,44 @@ export default function FAQ() {
   return (
     <>
       <Navbar />
-      <section className="py-20 bg-white">
+      <section className="relative bg-gray-900 text-white py-20 lg:py-28">
+        <div className="absolute inset-0 bg-gray-800" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span className="text-brand-400 font-semibold text-sm uppercase tracking-widest">FAQ</span>
+          <h1 className="text-4xl lg:text-5xl font-bold mt-4 mb-4">Frequently Asked Questions</h1>
+          <p className="text-gray-400 max-w-2xl mx-auto">Find answers to common questions about our services.</p>
+        </div>
+      </section>
+
+      <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h1>
-            <p className="text-gray-600">Find answers to common questions about our services</p>
-          </div>
           <div className="space-y-4">
             {faqs.map((faq, index) => (
-              <div key={index} className="card">
+              <div key={index} className="card overflow-hidden">
                 <button
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                  className="w-full p-6 text-left flex justify-between items-center"
+                  className="w-full p-6 text-left flex justify-between items-center gap-4"
                 >
-                  <span className="font-bold text-gray-900">{faq.question}</span>
-                  <span className={`text-teal-600 text-xl transition-transform ${openIndex === index ? 'rotate-45' : ''}`}>+</span>
+                  <span className="font-semibold text-gray-900">{faq.question}</span>
+                  <span className={`text-brand-500 text-xl transition-transform duration-300 flex-shrink-0 ${openIndex === index ? 'rotate-45' : ''}`}>
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
+                  </span>
                 </button>
                 {openIndex === index && (
-                  <div className="px-6 pb-6">
-                    <p className="text-gray-600">{faq.answer}</p>
+                  <div className="px-6 pb-6 border-t border-gray-100 pt-4">
+                    <p className="text-gray-500 leading-relaxed">{faq.answer}</p>
                   </div>
                 )}
               </div>
             ))}
           </div>
-          <div className="text-center mt-12">
-            <p className="text-gray-600 mb-4">Still have questions?</p>
-            <Link to="/contact" className="btn-secondary">Contact Us</Link>
+          <div className="text-center mt-12 card p-8">
+            <p className="text-gray-600 mb-4">Still have questions? We're happy to help.</p>
+            <Link to="/contact" className="btn-primary inline-block">Contact Us</Link>
           </div>
         </div>
       </section>
+
       <Footer />
     </>
   )
