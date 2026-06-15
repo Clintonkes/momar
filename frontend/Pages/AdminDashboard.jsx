@@ -35,10 +35,6 @@ function readBadge(isRead) {
   return isRead ? 'bg-green-100 text-green-700' : 'bg-gold-100 text-gold-700'
 }
 
-function isFinalBookingStatus(status) {
-  return ['completed', 'canceled'].includes(String(status || '').toLowerCase())
-}
-
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('dashboard')
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -224,29 +220,17 @@ export default function AdminDashboard() {
   )
 
   const renderBookingActions = (booking) => {
-    if (isFinalBookingStatus(booking.status)) {
-      return null
-    }
-
-    const current = String(booking.status || '').toLowerCase()
-
     return (
       <div className="flex flex-wrap justify-end gap-2">
-        {current !== 'approved' && (
-          <button type="button" onClick={() => updateBookingStatus(booking.id, 'approved')} className="btn-secondary text-xs px-3 py-2">
-            Approve
-          </button>
-        )}
-        {current !== 'completed' && (
-          <button type="button" onClick={() => updateBookingStatus(booking.id, 'completed')} className="btn-accent text-xs px-3 py-2">
-            Complete
-          </button>
-        )}
-        {current !== 'canceled' && (
-          <button type="button" onClick={() => updateBookingStatus(booking.id, 'canceled')} className="px-3 py-2 rounded-lg bg-red-600 text-white text-xs font-semibold hover:bg-red-700">
-            Cancel
-          </button>
-        )}
+        <button type="button" onClick={() => updateBookingStatus(booking.id, 'approved')} className="btn-secondary text-xs px-3 py-2">
+          Approve
+        </button>
+        <button type="button" onClick={() => updateBookingStatus(booking.id, 'completed')} className="btn-accent text-xs px-3 py-2">
+          Complete
+        </button>
+        <button type="button" onClick={() => updateBookingStatus(booking.id, 'canceled')} className="px-3 py-2 rounded-lg bg-red-600 text-white text-xs font-semibold hover:bg-red-700">
+          Cancel
+        </button>
       </div>
     )
   }
@@ -506,25 +490,15 @@ export default function AdminDashboard() {
                     <Detail label="Address" value={modalState.data.address} />
                     <Detail label="Instructions" value={modalState.data.special_instructions || 'None'} />
                     <div className="flex flex-wrap gap-3 pt-2">
-                      {!isFinalBookingStatus(modalState.data.status) && (
-                        <>
-                          {String(modalState.data.status || '').toLowerCase() !== 'approved' && (
-                            <button type="button" onClick={() => updateBookingStatus(modalState.data.id, 'approved')} className="btn-secondary">
-                              Approve
-                            </button>
-                          )}
-                          {String(modalState.data.status || '').toLowerCase() !== 'completed' && (
-                            <button type="button" onClick={() => updateBookingStatus(modalState.data.id, 'completed')} className="btn-accent">
-                              Complete
-                            </button>
-                          )}
-                          {String(modalState.data.status || '').toLowerCase() !== 'canceled' && (
-                            <button type="button" onClick={() => updateBookingStatus(modalState.data.id, 'canceled')} className="px-4 py-3 rounded-full bg-red-600 text-white font-semibold hover:bg-red-700">
-                              Cancel
-                            </button>
-                          )}
-                        </>
-                      )}
+                      <button type="button" onClick={() => updateBookingStatus(modalState.data.id, 'approved')} className="btn-secondary">
+                        Approve
+                      </button>
+                      <button type="button" onClick={() => updateBookingStatus(modalState.data.id, 'completed')} className="btn-accent">
+                        Complete
+                      </button>
+                      <button type="button" onClick={() => updateBookingStatus(modalState.data.id, 'canceled')} className="px-4 py-3 rounded-full bg-red-600 text-white font-semibold hover:bg-red-700">
+                        Cancel
+                      </button>
                     </div>
                   </div>
                 )}

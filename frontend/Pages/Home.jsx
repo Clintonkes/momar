@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import ScrollReveal from '../components/ScrollReveal'
@@ -19,33 +19,50 @@ const testimonials = [
   { id: 3, name: "Emily Rodriguez", content: "After our construction project, Momar Group cleaned it all up perfectly. Saved us so much time and stress!", rating: 5 },
 ]
 
+const heroSlides = [
+  {
+    image: "https://images.unsplash.com/photo-1581578017442-73e757bfcf4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+    tag: "Professional Cleaning Services",
+    title: "Your Trusted",
+    highlight: "Cleaning Partner",
+    text: "We provide premium residential and commercial cleaning services with meticulous attention to detail. Your satisfaction is guaranteed.",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1497366811353-68707a6b0a89?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+    tag: "Office & Commercial Cleaning",
+    title: "Spotless Workspaces,",
+    highlight: "Peak Productivity",
+    text: "From corporate offices to retail spaces, we keep your business environment pristine and professional. Clean spaces, happy teams.",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1600880706871-5e3b218bab05?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+    tag: "Residential Deep Cleaning",
+    title: "Your Home,",
+    highlight: "Crystal Clear",
+    text: "Thorough deep cleaning that transforms your living space. Every corner, every surface, meticulously cared for.",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+    tag: "Move In / Move Out",
+    title: "Seamless Transitions,",
+    highlight: "Immaculate Results",
+    text: "Making your move stress-free with comprehensive cleaning services for both incoming and outgoing properties.",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1558487704-ec5c8c4e0f4c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+    tag: "Post-Construction Cleanup",
+    title: "New Spaces,",
+    highlight: "Move-In Ready",
+    text: "Specialized post-construction cleaning that removes all dust, debris, and residue, leaving your space ready for use.",
+  },
+]
+
 export default function Home() {
   return (
     <>
       <Navbar />
 
-      <section className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581578017442-73e757bfcf4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center opacity-10" />
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/80 to-gray-900/60" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-40">
-          <div className="max-w-2xl">
-            <span className="inline-block bg-gold-500/15 text-gold-400 text-sm font-semibold px-4 py-1.5 rounded-full mb-6 animate-fade-in-up">
-              Professional Cleaning Services
-            </span>
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight animate-fade-in-up" style={{animationDelay: '0.1s'}}>
-              Your Trusted<br />
-              <span className="text-gold-400">Cleaning Partner</span>
-            </h1>
-            <p className="text-lg lg:text-xl text-gray-300 mb-10 max-w-xl leading-relaxed animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-              We provide premium residential and commercial cleaning services with meticulous attention to detail. Your satisfaction is guaranteed.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up" style={{animationDelay: '0.3s'}}>
-              <Link to="/booking" className="btn-primary text-center text-lg">Get a Free Quote</Link>
-              <Link to="/services" className="bg-white/10 backdrop-blur text-white font-semibold py-3 px-8 rounded-lg border border-white/20 hover:bg-white/20 transition-all text-center text-lg">Our Services</Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroCarousel />
 
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -203,5 +220,65 @@ export default function Home() {
 
       <Footer />
     </>
+  )
+}
+
+function HeroCarousel() {
+  const [current, setCurrent] = useState(0)
+
+  const next = useCallback(() => {
+    setCurrent(i => (i + 1) % heroSlides.length)
+  }, [])
+
+  const goTo = useCallback((i) => {
+    setCurrent(i)
+  }, [])
+
+  useEffect(() => {
+    const timer = setInterval(next, 5000)
+    return () => clearInterval(timer)
+  }, [next])
+
+  return (
+    <section className="relative text-white overflow-hidden">
+      {heroSlides.map((slide, i) => (
+        <div
+          key={i}
+          className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${i === current ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+        >
+          <div className="absolute inset-0 bg-cover bg-center" style={{backgroundImage: `url('${slide.image}')`}} />
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/80 to-gray-900/60" />
+        </div>
+      ))}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-40">
+        <div className="max-w-2xl min-h-[280px]">
+          <div key={current} className="animate-fade-in-up">
+            <span className="inline-block bg-gold-500/15 text-gold-400 text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
+              {heroSlides[current].tag}
+            </span>
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
+              {heroSlides[current].title}<br />
+              <span className="text-gold-400">{heroSlides[current].highlight}</span>
+            </h1>
+            <p className="text-lg lg:text-xl text-gray-300 mb-10 max-w-xl leading-relaxed">
+              {heroSlides[current].text}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link to="/booking" className="btn-primary text-center text-lg">Get a Free Quote</Link>
+              <Link to="/services" className="bg-white/10 backdrop-blur text-white font-semibold py-3 px-8 rounded-lg border border-white/20 hover:bg-white/20 transition-all text-center text-lg">Our Services</Link>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        {heroSlides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goTo(i)}
+            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === current ? 'bg-gold-400 w-6' : 'bg-white/40 hover:bg-white/70'}`}
+          />
+        ))}
+      </div>
+    </section>
   )
 }
