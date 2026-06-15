@@ -44,12 +44,12 @@ def _send_email(*, to: Iterable[str], subject: str, html: str, reply_to: str | N
 def booking_confirmation_email(name: str, service_type: str, status: str) -> str:
     return f"""
     <div style="font-family:Arial,sans-serif;color:#201b17;line-height:1.6">
-      <h2 style="color:#6f4526">Booking received</h2>
+      <h2 style="color:#d4a017">Booking received</h2>
       <p>Hi {name},</p>
       <p>We have received your booking request for <strong>{service_type}</strong>.</p>
       <p>Current status: <strong>{status.title()}</strong></p>
       <p>We will follow up with the next steps shortly.</p>
-      <p>Okri Consult LLC</p>
+      <p>Momar Group LLC</p>
     </div>
     """
 
@@ -57,19 +57,19 @@ def booking_confirmation_email(name: str, service_type: str, status: str) -> str
 def booking_status_email(name: str, service_type: str, status: str) -> str:
     message_map = {
         "approved": "Your booking has been approved. We will contact you to confirm the schedule.",
-        "completed": "Your booking has been completed. Thank you for choosing Okri Consult LLC.",
+        "completed": "Your booking has been completed. Thank you for choosing Momar Group LLC.",
         "denied": "Your booking has been declined. Please contact us if you would like to discuss alternatives.",
         "pending": "Your booking is pending review.",
     }
     message = message_map.get(status, f"Your booking status has been updated to {status}.")
     return f"""
     <div style="font-family:Arial,sans-serif;color:#201b17;line-height:1.6">
-      <h2 style="color:#6f4526">Booking update</h2>
+      <h2 style="color:#d4a017">Booking update</h2>
       <p>Hi {name},</p>
       <p>{message}</p>
       <p><strong>Service:</strong> {service_type}</p>
       <p><strong>Status:</strong> {status.title()}</p>
-      <p>Okri Consult LLC</p>
+      <p>Momar Group LLC</p>
     </div>
     """
 
@@ -77,10 +77,10 @@ def booking_status_email(name: str, service_type: str, status: str) -> str:
 def contact_ack_email(name: str, subject: str) -> str:
     return f"""
     <div style="font-family:Arial,sans-serif;color:#201b17;line-height:1.6">
-      <h2 style="color:#6f4526">We received your message</h2>
+      <h2 style="color:#d4a017">We received your message</h2>
       <p>Hi {name},</p>
       <p>Thanks for reaching out about <strong>{subject}</strong>. Our team has received your message and will respond as soon as possible.</p>
-      <p>Okri Consult LLC</p>
+      <p>Momar Group LLC</p>
     </div>
     """
 
@@ -88,7 +88,7 @@ def contact_ack_email(name: str, subject: str) -> str:
 def admin_notification_email(title: str, body: str) -> str:
     return f"""
     <div style="font-family:Arial,sans-serif;color:#201b17;line-height:1.6">
-      <h2 style="color:#6f4526">{title}</h2>
+      <h2 style="color:#d4a017">{title}</h2>
       <div>{body}</div>
     </div>
     """

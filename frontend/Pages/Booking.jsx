@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import ScrollReveal from '../components/ScrollReveal'
 import { api } from '../services/api'
 import toast from 'react-hot-toast'
 
@@ -35,10 +36,9 @@ export default function Booking() {
   return (
     <>
       <Navbar />
-      <section className="relative bg-gray-900 text-white py-20 lg:py-28">
-        <div className="absolute inset-0 bg-gray-800" />
+      <section className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-20 lg:py-28">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="text-brand-400 font-semibold text-sm uppercase tracking-widest">Booking</span>
+          <span className="text-gold-400 font-semibold text-sm uppercase tracking-widest">Booking</span>
           <h1 className="text-4xl lg:text-5xl font-bold mt-4 mb-4">Request Your Cleaning Service</h1>
           <p className="text-gray-400 max-w-2xl mx-auto">Fill out the form below and we'll get back to you within 24 hours.</p>
         </div>
@@ -46,6 +46,7 @@ export default function Booking() {
 
       <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal>
           <div className="card p-8 lg:p-12">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -77,6 +78,7 @@ export default function Booking() {
               </button>
             </form>
           </div>
+          </ScrollReveal>
         </div>
       </section>
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import ScrollReveal from '../components/ScrollReveal'
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(null)
@@ -18,10 +19,9 @@ export default function FAQ() {
   return (
     <>
       <Navbar />
-      <section className="relative bg-gray-900 text-white py-20 lg:py-28">
-        <div className="absolute inset-0 bg-gray-800" />
+      <section className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-20 lg:py-28">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="text-brand-400 font-semibold text-sm uppercase tracking-widest">FAQ</span>
+          <span className="text-gold-400 font-semibold text-sm uppercase tracking-widest">FAQ</span>
           <h1 className="text-4xl lg:text-5xl font-bold mt-4 mb-4">Frequently Asked Questions</h1>
           <p className="text-gray-400 max-w-2xl mx-auto">Find answers to common questions about our services.</p>
         </div>
@@ -29,6 +29,7 @@ export default function FAQ() {
 
       <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal>
           <div className="space-y-4">
             {faqs.map((faq, index) => (
               <div key={index} className="card overflow-hidden">
@@ -37,7 +38,7 @@ export default function FAQ() {
                   className="w-full p-6 text-left flex justify-between items-center gap-4"
                 >
                   <span className="font-semibold text-gray-900">{faq.question}</span>
-                  <span className={`text-brand-500 text-xl transition-transform duration-300 flex-shrink-0 ${openIndex === index ? 'rotate-45' : ''}`}>
+                  <span className={`text-gold-500 text-xl transition-transform duration-300 flex-shrink-0 ${openIndex === index ? 'rotate-45' : ''}`}>
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
                   </span>
                 </button>
@@ -53,6 +54,7 @@ export default function FAQ() {
             <p className="text-gray-600 mb-4">Still have questions? We're happy to help.</p>
             <Link to="/contact" className="btn-primary inline-block">Contact Us</Link>
           </div>
+          </ScrollReveal>
         </div>
       </section>
 

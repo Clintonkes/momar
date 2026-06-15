@@ -26,13 +26,13 @@ function formatDate(value) {
 function statusBadge(status) {
   const normalized = String(status || '').toLowerCase()
   if (normalized === 'completed') return 'bg-green-100 text-green-700'
-  if (normalized === 'approved') return 'bg-brand-100 text-brand-700'
+  if (normalized === 'approved') return 'bg-gold-100 text-gold-700'
   if (normalized === 'denied') return 'bg-red-100 text-red-700'
   return 'bg-amber-100 text-amber-800'
 }
 
 function readBadge(isRead) {
-  return isRead ? 'bg-green-100 text-green-700' : 'bg-brand-100 text-brand-700'
+  return isRead ? 'bg-green-100 text-green-700' : 'bg-gold-100 text-gold-700'
 }
 
 function isFinalBookingStatus(status) {
@@ -213,12 +213,12 @@ export default function AdminDashboard() {
       <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100">
         <div className="text-4xl mb-2">📅</div>
         <h3 className="font-bold text-gray-900 mb-2">Total Bookings</h3>
-        <p className="text-3xl font-bold text-brand-600">{counts.bookings}</p>
+        <p className="text-3xl font-bold text-gold-600">{counts.bookings}</p>
       </div>
       <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100">
         <div className="text-4xl mb-2">✉️</div>
         <h3 className="font-bold text-gray-900 mb-2">Contact Messages</h3>
-        <p className="text-3xl font-bold text-brand-600">{counts.messages}</p>
+        <p className="text-3xl font-bold text-gold-600">{counts.messages}</p>
       </div>
     </div>
   )
@@ -398,7 +398,7 @@ export default function AdminDashboard() {
             <div className="flex items-start justify-between gap-4 mb-8">
             <div>
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-8 h-8 bg-gold-500 rounded-lg flex items-center justify-center flex-shrink-0">
                   <span className="text-white font-bold text-sm">M</span>
                 </div>
                 <h2 className="text-xl font-bold text-gray-900">Momar Admin</h2>
@@ -429,7 +429,7 @@ export default function AdminDashboard() {
                     setSidebarOpen(false)
                   }}
                   className={`w-full text-left px-4 py-3 rounded-xl transition-colors ${
-                    activeTab === key ? 'bg-brand-50 text-brand-700 font-semibold' : 'text-gray-600 hover:bg-gray-50'
+                    activeTab === key ? 'bg-gold-50 text-gold-700 font-semibold' : 'text-gray-600 hover:bg-gray-50'
                   }`}
                 >
                   {label}

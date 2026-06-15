@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import ScrollReveal from '../components/ScrollReveal'
 import { Link } from 'react-router-dom'
 
 export default function Testimonials() {
@@ -16,10 +17,9 @@ export default function Testimonials() {
   return (
     <>
       <Navbar />
-      <section className="relative bg-gray-900 text-white py-20 lg:py-28">
-        <div className="absolute inset-0 bg-gray-800" />
+      <section className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-20 lg:py-28">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="text-brand-400 font-semibold text-sm uppercase tracking-widest">Testimonials</span>
+          <span className="text-gold-400 font-semibold text-sm uppercase tracking-widest">Testimonials</span>
           <h1 className="text-4xl lg:text-5xl font-bold mt-4 mb-4">What Our Clients Say</h1>
           <p className="text-gray-400 max-w-2xl mx-auto">Don't just take our word for it - hear from our satisfied customers.</p>
         </div>
@@ -28,26 +28,30 @@ export default function Testimonials() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((testimonial) => (
-              <div key={testimonial.id} className="card p-8">
-                <div className="flex mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className={`text-lg ${i < testimonial.rating ? 'text-amber-400' : 'text-gray-200'}`}>★</span>
-                  ))}
-                </div>
-                <p className="text-gray-600 mb-6 italic leading-relaxed">"{testimonial.content}"</p>
-                <div className="flex items-center">
-                  <div className="w-11 h-11 bg-brand-100 rounded-full flex items-center justify-center mr-3">
-                    <span className="text-brand-700 font-bold">{testimonial.name[0]}</span>
+            {testimonials.map((t, i) => (
+              <ScrollReveal key={t.id}>
+                <div className="card p-8">
+                  <div className="flex mb-4">
+                    {[...Array(5)].map((_, j) => (
+                      <span key={j} className={`text-lg ${j < t.rating ? 'text-gold-400' : 'text-gray-200'}`}>★</span>
+                    ))}
                   </div>
-                  <span className="font-semibold text-gray-900">{testimonial.name}</span>
+                  <p className="text-gray-600 mb-6 italic leading-relaxed">"{t.content}"</p>
+                  <div className="flex items-center">
+                    <div className="w-11 h-11 bg-gold-100 rounded-full flex items-center justify-center mr-3">
+                      <span className="text-gold-700 font-bold">{t.name[0]}</span>
+                    </div>
+                    <span className="font-semibold text-gray-900">{t.name}</span>
+                  </div>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
-          <div className="text-center mt-12">
-            <Link to="/booking" className="btn-primary inline-block">Join Our Happy Customers</Link>
-          </div>
+          <ScrollReveal>
+            <div className="text-center mt-12">
+              <Link to="/booking" className="btn-primary inline-block">Join Our Happy Customers</Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

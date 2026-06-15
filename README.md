@@ -1,11 +1,11 @@
-# Okri Consult LLC - Professional Cleaning Website
+# Momar Group LLC - Professional Cleaning Website
 
 A premium full-stack cleaning company website built with FastAPI backend and React frontend.
 
 ## Project Structure
 
 ```
-okri-consult/
+momar-group/
 ├── backend/                 # FastAPI backend
 │   ├── main.py             # Main application entry point
 │   ├── core/               # Configuration, database, security
@@ -29,19 +29,18 @@ okri-consult/
 
 ### Frontend
 - Responsive design with Tailwind CSS
-- Modern UI with gradients and smooth transitions
+- Modern UI with smooth transitions and scroll animations
 - Pages: Home, About, Services, Booking, Testimonials, FAQ, Contact, Admin
 
 ### Backend
 - FastAPI with JWT authentication
-- SQLite database with SQLAlchemy ORM
+- SQLite/PostgreSQL database with SQLAlchemy ORM
 - Protected admin routes
 - CORS support for frontend integration
 
 ### Admin Dashboard
 - Booking management
 - Contact message management
-- Testimonial management
 - Secure login/logout
 
 ## Deployment
@@ -54,20 +53,20 @@ okri-consult/
 Backend `.env`:
 ```
 SECRET_KEY=your-secret-key
-ADMIN_EMAIL=okriconsult@proton.me
+ADMIN_EMAIL=momargroup@proton.me
 ADMIN_PASSWORD=your-secure-password
 RESEND_API_KEY=re_xxxxxxxxxxxxxxxxx
-RESEND_FROM_EMAIL=Okri Consult <no-reply@yourdomain.com>
-RESEND_FROM_NAME=Okri Consult LLC
+RESEND_FROM_EMAIL=Momar Group <no-reply@momargroup.com>
+RESEND_FROM_NAME=Momar Group LLC
 PUBLIC_SITE_URL=https://yourdomain.com
 ```
 
 ## Admin Bootstrap
 
-Create or update the admin account from your terminal:
+Create or update the admin account:
 
 ```bash
-python3 scripts/bootstrap_admin.py
+python3 create_admin.py
 ```
 
 The script will prompt for the admin email and password, hash the password, and store it in the configured database.
@@ -81,10 +80,3 @@ Resend needs:
 3. A `RESEND_FROM_EMAIL` that uses that verified domain
 
 Once your domain is verified, you can send from any address at that domain.
-
-## Colors
-- Primary: Deep blue (#1d4ed8)
-- Secondary: Cyan/teal (#0d9488)
-- Accent: Green (#22c55e)
-- Background: White
-- Neutral: Light gray

@@ -9,7 +9,7 @@ services:
       - "8000:8000"
     environment:
       - SECRET_KEY=${SECRET_KEY:-your-secret-key-change-in-production}
-      - DATABASE_URL=sqlite:////app/okri_cleaning.db
+      - DATABASE_URL=sqlite:////app/momar_cleaning.db
     volumes:
       - ./data:/app/data
 
