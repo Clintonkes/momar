@@ -21,39 +21,39 @@ const testimonials = [
 
 const heroSlides = [
   {
-    image: "https://images.unsplash.com/photo-1581578017442-73e757bfcf4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
     tag: "Professional Cleaning Services",
     title: "Your Trusted",
     highlight: "Cleaning Partner",
     text: "We provide premium residential and commercial cleaning services with meticulous attention to detail. Your satisfaction is guaranteed.",
   },
   {
-    image: "https://images.unsplash.com/photo-1497366811353-68707a6b0a89?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+    image: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+    tag: "Residential & Hospitality",
+    title: "Immaculate Interiors,",
+    highlight: "Unforgettable Impressions",
+    text: "From cozy homes to luxury hotels, we deliver spotless results that leave a lasting impression on every guest and resident.",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
     tag: "Office & Commercial Cleaning",
     title: "Spotless Workspaces,",
     highlight: "Peak Productivity",
     text: "From corporate offices to retail spaces, we keep your business environment pristine and professional. Clean spaces, happy teams.",
   },
   {
-    image: "https://images.unsplash.com/photo-1600880706871-5e3b218bab05?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
-    tag: "Residential Deep Cleaning",
-    title: "Your Home,",
-    highlight: "Crystal Clear",
-    text: "Thorough deep cleaning that transforms your living space. Every corner, every surface, meticulously cared for.",
+    image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+    tag: "Commercial Deep Cleaning",
+    title: "Beyond Surface Clean,",
+    highlight: "Total Sanitization",
+    text: "Hospital-grade disinfection and deep cleaning for high-traffic commercial spaces, ensuring a healthy environment for everyone.",
   },
   {
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
-    tag: "Move In / Move Out",
-    title: "Seamless Transitions,",
-    highlight: "Immaculate Results",
-    text: "Making your move stress-free with comprehensive cleaning services for both incoming and outgoing properties.",
-  },
-  {
-    image: "https://images.unsplash.com/photo-1558487704-ec5c8c4e0f4c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
-    tag: "Post-Construction Cleanup",
+    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+    tag: "Event & Post-Construction",
     title: "New Spaces,",
     highlight: "Move-In Ready",
-    text: "Specialized post-construction cleaning that removes all dust, debris, and residue, leaving your space ready for use.",
+    text: "Specialized post-construction and event cleanup that removes all dust, debris, and residue, leaving your space ready for use.",
   },
 ]
 
@@ -240,13 +240,13 @@ function HeroCarousel() {
   }, [next])
 
   return (
-    <section className="relative text-white overflow-hidden">
+    <section className="relative text-white overflow-hidden min-h-[500px] lg:min-h-[600px]">
       {heroSlides.map((slide, i) => (
         <div
           key={i}
           className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${i === current ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
         >
-          <div className="absolute inset-0 bg-cover bg-center" style={{backgroundImage: `url('${slide.image}')`}} />
+          <img src={slide.image} alt="" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/80 to-gray-900/60" />
         </div>
       ))}
