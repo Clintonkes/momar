@@ -27,7 +27,7 @@ function statusBadge(status) {
   const normalized = String(status || '').toLowerCase()
   if (normalized === 'completed') return 'bg-green-100 text-green-700'
   if (normalized === 'approved') return 'bg-gold-100 text-gold-700'
-  if (normalized === 'denied') return 'bg-red-100 text-red-700'
+  if (normalized === 'canceled') return 'bg-red-100 text-red-700'
   return 'bg-amber-100 text-amber-800'
 }
 
@@ -36,7 +36,7 @@ function readBadge(isRead) {
 }
 
 function isFinalBookingStatus(status) {
-  return ['approved', 'completed', 'denied'].includes(String(status || '').toLowerCase())
+  return ['completed', 'canceled'].includes(String(status || '').toLowerCase())
 }
 
 export default function AdminDashboard() {
@@ -228,17 +228,25 @@ export default function AdminDashboard() {
       return null
     }
 
+    const current = String(booking.status || '').toLowerCase()
+
     return (
       <div className="flex flex-wrap justify-end gap-2">
-        <button type="button" onClick={() => updateBookingStatus(booking.id, 'approved')} className="btn-secondary text-xs px-3 py-2">
-          Approve
-        </button>
-        <button type="button" onClick={() => updateBookingStatus(booking.id, 'completed')} className="btn-accent text-xs px-3 py-2">
-          Complete
-        </button>
-        <button type="button" onClick={() => updateBookingStatus(booking.id, 'denied')} className="px-3 py-2 rounded-lg bg-red-600 text-white text-xs font-semibold hover:bg-red-700">
-          Deny
-        </button>
+        {current !== 'approved' && (
+          <button type="button" onClick={() => updateBookingStatus(booking.id, 'approved')} className="btn-secondary text-xs px-3 py-2">
+            Approve
+          </button>
+        )}
+        {current !== 'completed' && (
+          <button type="button" onClick={() => updateBookingStatus(booking.id, 'completed')} className="btn-accent text-xs px-3 py-2">
+            Complete
+          </button>
+        )}
+        {current !== 'canceled' && (
+          <button type="button" onClick={() => updateBookingStatus(booking.id, 'canceled')} className="px-3 py-2 rounded-lg bg-red-600 text-white text-xs font-semibold hover:bg-red-700">
+            Cancel
+          </button>
+        )}
       </div>
     )
   }
@@ -388,7 +396,7 @@ export default function AdminDashboard() {
         />
       )}
 
-      <div className="flex">
+      <div className="flex w-full max-w-full">
         <aside
           className={`fixed md:static inset-y-0 left-0 z-50 w-72 bg-white shadow-xl md:shadow-md border-r border-gray-100 transform transition-transform duration-300 md:translate-x-0 ${
             sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
@@ -449,7 +457,7 @@ export default function AdminDashboard() {
           </div>
         </aside>
 
-        <main className="flex-1 min-h-screen p-4 md:p-8 md:ml-0">
+        <main className="flex-1 min-h-screen p-4 md:p-8 md:ml-0 min-w-0 max-w-full">
           <div className="hidden md:flex items-center justify-between mb-6">
             <div>
               <h1 className="text-2xl font-bold text-gray-900 capitalize">{activeTab.replace('-', ' ')}</h1>
@@ -500,15 +508,21 @@ export default function AdminDashboard() {
                     <div className="flex flex-wrap gap-3 pt-2">
                       {!isFinalBookingStatus(modalState.data.status) && (
                         <>
-                          <button type="button" onClick={() => updateBookingStatus(modalState.data.id, 'approved')} className="btn-secondary">
-                            Approve
-                          </button>
-                          <button type="button" onClick={() => updateBookingStatus(modalState.data.id, 'completed')} className="btn-accent">
-                            Complete
-                          </button>
-                          <button type="button" onClick={() => updateBookingStatus(modalState.data.id, 'denied')} className="px-4 py-3 rounded-full bg-red-600 text-white font-semibold hover:bg-red-700">
-                            Deny
-                          </button>
+                          {String(modalState.data.status || '').toLowerCase() !== 'approved' && (
+                            <button type="button" onClick={() => updateBookingStatus(modalState.data.id, 'approved')} className="btn-secondary">
+                              Approve
+                            </button>
+                          )}
+                          {String(modalState.data.status || '').toLowerCase() !== 'completed' && (
+                            <button type="button" onClick={() => updateBookingStatus(modalState.data.id, 'completed')} className="btn-accent">
+                              Complete
+                            </button>
+                          )}
+                          {String(modalState.data.status || '').toLowerCase() !== 'canceled' && (
+                            <button type="button" onClick={() => updateBookingStatus(modalState.data.id, 'canceled')} className="px-4 py-3 rounded-full bg-red-600 text-white font-semibold hover:bg-red-700">
+                              Cancel
+                            </button>
+                          )}
                         </>
                       )}
                     </div>

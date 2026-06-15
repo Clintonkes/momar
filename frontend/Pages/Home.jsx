@@ -110,45 +110,26 @@ export default function Home() {
 
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <ScrollReveal animation="scroll-animate-left">
-              <div className="relative">
-                <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
-                  <img src="https://images.unsplash.com/photo-1600880706871-5e3b218bab05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Our Team" className="w-full h-full object-cover" />
-                </div>
-                <div className="absolute -bottom-6 -right-6 bg-white rounded-2xl p-6 shadow-lg hidden lg:block border border-gray-100">
-                  <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 bg-gold-500 rounded-full flex items-center justify-center">
-                      <span className="text-white text-2xl font-bold">5K+</span>
-                    </div>
-                    <div>
-                      <p className="font-bold text-gray-900">Happy Customers</p>
-                      <p className="text-sm text-gray-500">And growing every day</p>
-                    </div>
-                  </div>
-                </div>
+          <ScrollReveal>
+            <div className="max-w-4xl mx-auto text-center">
+              <span className="text-gold-500 font-semibold text-sm uppercase tracking-widest">About Our Company</span>
+              <h2 className="section-title mt-3 mb-8">Exceptional Level of Cleaning Services</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                <p className="text-gray-500 leading-relaxed">
+                  Founded with a commitment to excellence, Momar Group LLC has built a reputation as one of the leading providers of residential and commercial cleaning solutions in North Richland Hills, TX. Our continuous pursuit for perfection has resulted in consistent growth.
+                </p>
+                <p className="text-gray-500 leading-relaxed">
+                  Our focus is to listen to our clients, understand their needs, and provide the exceptional level of cleaning service. Our professional team uses eco-friendly products and advanced techniques to ensure your space is not just clean, but truly spotless.
+                </p>
               </div>
-            </ScrollReveal>
-            <ScrollReveal animation="scroll-animate-right">
-              <div>
-                <span className="text-gold-500 font-semibold text-sm uppercase tracking-widest">About Our Company</span>
-                <h2 className="section-title mt-3 mb-6">Exceptional Level of Cleaning Services</h2>
-                <p className="text-gray-500 mb-4 leading-relaxed">
-                  Founded with a commitment to excellence, Momar Group LLC has built a reputation as one of the leading providers of residential and commercial cleaning solutions in North Richland Hills, TX.
-                </p>
-                <p className="text-gray-500 mb-4 leading-relaxed">
-                  Our continuous pursuit for perfection has resulted in consistent growth. Our focus is to listen to our clients, understand their needs, and provide the exceptional level of cleaning service.
-                </p>
-                <p className="text-gray-500 mb-6 leading-relaxed">
-                  Our professional team uses eco-friendly products and advanced techniques to ensure your space is not just clean, but truly spotless.
-                </p>
+              <div className="mt-8">
                 <Link to="/about" className="btn-primary inline-flex items-center gap-2">
                   Learn More
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                 </Link>
               </div>
-            </ScrollReveal>
-          </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
